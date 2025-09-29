@@ -1,5 +1,3 @@
-# Bank_Marketing_Project
-Machine Learning for Bank Marketing Dataset
 # Bank Marketing Dataset Machine Learning Project
 
 ## Опис
@@ -11,11 +9,44 @@ Machine Learning for Bank Marketing Dataset
 ## Мета
 Передбачити, чи клієнт погодиться на терміновий депозит.
 
+## Підхід
+Попередня обробка та інженерія ознак  
+Категоріальні ознаки були закодовані за допомогою OneHotEncoder.  
+Числові ознаки масштабовані за допомогою MinMaxScaler.  
+Використано стратифікований train-test split для збереження пропорцій класів.  
+Додатково протестовано методи ресемплінгу (SMOTE, undersampling).  
+
+## Моделювання
+Було протестовано ряд моделей: '
+* Logistic Regression
+* kNN
+* Decision Tree
+* XGBoost
+* LightGBM.
+
+Налаштування гіперпараметрів виконувалося через GridSearchCV, RandomizedSearchCV.
+Метрика оцінювання: ROC AUC.
+
+## Підсумкова таблиця експериментів
+<img width="1570" height="647" alt="image" src="https://github.com/user-attachments/assets/b118db0a-58f1-4dd4-b202-82a7da331000" />
+
+## Висновки
+Найкраще себе показали Logistic Regression та XGBoost (RandomizedSearchCV) з AUC ~0.80.  
+Простий Decision Tree сильно перенавчався, навіть після тюнінгу показав гірші результати.  
+Градієнтний бустинг (XGBoost, LightGBM) у базових налаштуваннях не працює добре — потрібна оптимізація гіперпараметрів.  
+Логістична регресія залишилась конкурентною навіть у порівнянні зі складними моделями.  
+
+Можливі покращення:
+* Більш глибока інженерія ознак — створення взаємодій між ознаками, доменно-орієнтовані змінні.
+* Методи балансування класів — експерименти зі SMOTE, ADASYN.
+* Ансамблювання моделей — стекінг Logistic Regression + XGBoost.
+* Оптимізація порогу класифікації — для покращення Recall/Precision балансу.
+
 ## Файли
-- ML_pipeline.ipynb – ноутбук із кодом та аналізом.
+- Hromyk_"Mid_term_Project_ipynb".ipynb – ноутбук із кодом та аналізом.
 - README.md – опис проєкту.
-- LICENSE – ліцензія.
+- bank-additional-full.csv – вихідний файл з даними
 
 ## Використані технології
-- Python (pandas, numpy, scikit-learn)
+- Python (pandas, numpy, matplotlib, seaborn, scikit-learn)
 - Jupyter Notebook
